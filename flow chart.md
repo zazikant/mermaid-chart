@@ -33,8 +33,40 @@ flowchart TD
 
     style A stroke:#FFD600
 
-
-
-
-
 ==============
+
+
+In Mermaid flowcharts, different **shapes (boxes)** represent different types of steps or logic:
+
+---
+
+### 📦 Common Shapes & Their Meanings
+
+| Shape          | Symbol / Type      | Meaning                                                                 |
+|----------------|--------------------|-------------------------------------------------------------------------|
+| **Rectangle**  | `A[Process Step]`  | A **process**, **action**, or **operation** (e.g., “Filter Profiles”, “Scrape Website”) |
+| **Diamond**    | `B{Decision}`      | A **decision point** — typically has 2+ outgoing paths (Yes/No, True/False) |
+| **Rounded Box**| `C([Start/End])`   | **Start or End** of the workflow (terminal nodes)                       |
+| **Circle**     | `D((Node))`        | Connector or off-page reference (less common in basic flows)            |
+| **Subgraph**   | `subgraph X [...]` | Group of related nodes (visually boxes them together)                   |
+
+---
+
+### ✅ In Your Diagram:
+- `Filter Profiles...` → **Rectangle** = Processing step
+- `Any Emails...?` → **Diamond** = Decision (Yes/No branch)
+- `End: Error` → **Rounded Box** = Terminal state (end of flow)
+
+---
+
+### 💡 Pro Tip:
+You can customize shapes for clarity:
+```mermaid
+A[Normal Process]
+B{Decision}
+C([Start])
+D[[Database]]
+E>Output]
+```
+
+This helps visually distinguish between **actions**, **decisions**, **start/end**, and **data stores**.
