@@ -35,6 +35,17 @@ flowchart TD
 
 ==============
 
+### 💡 Pro Tip:
+You can customize shapes for clarity:
+```mermaid
+A[Normal Process]
+B{Decision}
+C([Start])
+D[[Database]]
+E>Output]
+```
+
+This helps visually distinguish between **actions**, **decisions**, **start/end**, and **data stores**.
 
 In Mermaid flowcharts, different **shapes (boxes)** represent different types of steps or logic:
 
@@ -59,14 +70,4 @@ In Mermaid flowcharts, different **shapes (boxes)** represent different types of
 
 ---
 
-### 💡 Pro Tip:
-You can customize shapes for clarity:
-```mermaid
-A[Normal Process]
-B{Decision}
-C([Start])
-D[[Database]]
-E>Output]
-```
 
-This helps visually distinguish between **actions**, **decisions**, **start/end**, and **data stores**.
