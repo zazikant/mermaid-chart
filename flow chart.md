@@ -1,3 +1,6 @@
+Open below code in https://mermaid.live/
+==============
+
 flowchart TD
  subgraph Enrichment_Subgraph["Email → Company Summary Pipeline"]
         G["Extract Domain\n(e.g., name@kalpataru.com → kalpataru.com)"]
@@ -31,3 +34,4 @@ flowchart TD
     style A stroke:#FFD600
 
 
+==============
