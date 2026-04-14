@@ -55,7 +55,9 @@ Round edges written as `B(Round edges)` gives you a stadium or pill shape. This 
 
 The rhombus or diamond written as `C{Rhombus/Diamond}` is used for decisions and branches. Any time your flow asks a question that splits the path, use a diamond. Think "Is user logged in?", "Payment successful?", or "Age > 18?". A diamond should always have two or more arrows coming out of it, usually labeled Yes/No or True/False.
 
-A circle written as `D((Circle))` is a connector. Its job is to jump from one part of the chart to another so you don't have lines crossing all over the place. You put the same label in two circles to show they connect. Some people also use a single circle as a start/end point, but the main use is avoiding spaghetti diagrams.
+A circle written as `D((Circle))` is a connector. (in langgraph term , arrows are edges, circles are nodes, and subgraphs are containers that hold nodes)
+
+Its job is to jump from one part of the chart to another so you don't have lines crossing all over the place. You put the same label in two circles to show they connect. Some people also use a single circle as a start/end point, but the main use is avoiding spaghetti diagrams.
 
 The flag shape written as `E>Flag shape]` represents a document or output. Use it when your process creates something tangible like "Generate PDF", "Print invoice", "Export CSV", or "Display report". It visually signals that information is being produced for the user.
 
