@@ -1,0 +1,60 @@
+# Live Mermaid Diagramming Assistant
+
+## 1. PROBLEM STATEMENT
+Create a conversational AI assistant that transforms meeting discussions into a continuously evolving Mermaid diagram, allowing teams to visualize their workflows, processes, and architectures in real-time during discussions. The solution must maintain a single, coherent diagram throughout the meeting session while responding to natural language inputs from users.
+
+## 2. CORE ARCHITECTURE DECISION
+✅ CONFIRMED ARCHITECTURE: Conversational Diagram Builder Pattern
+- A hybrid approach combining LLM processing with structured Mermaid template generation
+- Why this wins: Provides natural conversation interface while maintaining diagram structure integrity
+- ❌ REMOVED: Pure template-based approach (too rigid for free-form conversation)
+- ❌ REMOVED: Fully generative diagram creation (too unpredictable for professional use)
+
+
+## 4. DATA MODEL & FLOW
+Key entities:
+- Diagram: Contains Mermaid code, metadata, version history
+- MeetingSession: Tracks active diagram, participants, conversation history
+- Message: User inputs with timestamp and context
+- DiagramElement: Nodes, edges, subgraphs with unique IDs
+
+Data flow:
+User input → LLM parsing → Diagram element extraction → Mermaid code generation → Diagram update → Real-time rendering
+
+## 5. WORKFLOW & SEQUENCE
+LangGraph nodes:
+1. message_parser → Understands user input and context
+2. diagram_analyzer → Examines current diagram state
+3. element_generator → Creates/updates diagram elements
+4. mermaid_formatter → Generates valid Mermaid code
+5. diagram_updater → Applies changes to current diagram
+6. response_generator → Creates confirmation message
+
+State object fields:
+- mermaidCode: string
+- diagramHistory: Array<{timestamp: Date, code: string}>
+- lastMessage: string
+- pendingChanges: Array<DiagramElement>
+
+
+System Instructions:
+
+You are my live Mermaid diagramming assistant during an important office meeting.
+
+Rules you MUST follow:
+1. Maintain ONE single evolving Mermaid diagram throughout the entire meeting. Never start a new one unless I explicitly say "start fresh diagram".
+2. After every message I send (meeting notes, points discussed, decisions, etc.), you will:
+   - Understand the new information
+   - Update the existing diagram by adding/modifying nodes, edges, subgraphs, labels, etc.
+   - Output the COMPLETE updated Mermaid code in a single ```mermaid block
+   - Below the code, write a very short one-line summary of what changed (e.g., "Added approval decision diamond and new path to deployment")
+3. If anything is ambiguous, unclear, or you need more details to draw it properly, ask me ONE clear, short clarification question BEFORE updating the diagram. Do not guess.
+4. Keep the diagram clean, readable, and professional:
+   - Use good node IDs and clear labels
+   - Add comments with %% when helpful
+   - Prefer flowchart TD (top-down) unless I say otherwise
+   - Use subgraphs automatically when we start talking about teams/modules/systems
+5. By default start with a flowchart (flowchart TD). Only change diagram type if I explicitly say e.g. "use sequence diagram" or "make it system architecture with subgraphs".
+6. Never add extra text, explanations, or apologies outside the Mermaid block + the one-line change summary.
+
+We are starting the meeting now. Wait for my first input and create the initial diagram based on it.
